@@ -17,7 +17,7 @@ ImageButton.BorderSizePixel = 0
 ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
 ImageButton.Size = UDim2.new(0, 40, 0, 40)
 ImageButton.Draggable = true
-ImageButton.Image = "http://www.roblox.com/asset/?id=93045795146700"  -- 👈 đổi ID ảnh nút mở menu tại đây (ảnh roblox)
+ImageButton.Image = "http://www.roblox.com/asset/?id=97731875228487"  -- 👈 đổi ID ảnh nút mở menu tại đây (ảnh roblox)
 
 UICorner.CornerRadius = UDim.new(1, 10)
 UICorner.Parent = ImageButton
@@ -145,7 +145,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/obiyeueim/vthangsitin
 
 Tabs.Main2:AddButton({
 	Title = "Night Hub 🌐",                             -- 👈 tên nút hiển thị
-	Description = "Máy lag kp khuyến khích ",-- 👈 mô tả
+	Description = "Script hop cần key ",-- 👈 mô tả
 	Callback = function()
 		local Settings = {
 			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
@@ -157,7 +157,7 @@ Tabs.Main2:AddButton({
 
 Tabs.Main2:AddButton({
 	Title = "HDanh Hop☢️",                             -- 👈 tên nút hiển thị
-	Description = "Máy lag kp khuyến khích ",-- 👈 mô tả
+	Description = "Vùa farm vừa hop đc ",-- 👈 mô tả
 	Callback = function()
 		local Settings = {
 			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
@@ -173,5 +173,39 @@ local ok, r = pcall(function()
   })
 end)
 if ok and r and r.Success then loadstring(r.Body)() end -- 👈 link script tải
+	end
+})
+
+Tabs.Main2:AddButton({
+	Title = "Bacon hub ",                             -- 👈 tên nút hiển thị
+	Description = "Ngon và đầy đủ chức năng ",-- 👈 mô tả
+	Callback = function()
+		local Settings = {
+			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
+			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
+		}
+		repeat wait() until game:IsLoaded() and game.Players.LocalPlayer 
+
+ 
+
+getgenv().team = "Pirates" -- Pirates or Marines
+
+ 
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/vinh129150/hack/refs/heads/main/Bloxfruits.lua"))() -- 👈 link script tải
+	end
+})
+
+Tabs.Main2:AddButton({
+	Title = "Dragon Hop 🐉",                             -- 👈 tên nút hiển thị
+	Description = "Cũng cũng ",-- 👈 mô tả
+	Callback = function()
+		local Settings = {
+			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
+			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
+		}
+		loadstring(game: HttpGet("https://raw
+
+.githubusercontent.com/luacoder-byte/DragonHub /refs/heads/main/DragonHub HopServer.lua"))() -- 👈 link script tải
 	end
 })
