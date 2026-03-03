@@ -17,7 +17,7 @@ ImageButton.BorderSizePixel = 0
 ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
 ImageButton.Size = UDim2.new(0, 40, 0, 40)
 ImageButton.Draggable = true
-ImageButton.Image = "http://www.roblox.com/asset/?id=0987350775"  -- 👈 đổi ID ảnh nút mở menu tại đây (ảnh roblox)
+ImageButton.Image = "http://www.roblox.com/asset/?id=97731875228487"  -- 👈 đổi ID ảnh nút mở menu tại đây (ảnh roblox)
 
 UICorner.CornerRadius = UDim.new(1, 10)
 UICorner.Parent = ImageButton
@@ -35,9 +35,9 @@ local Window = Fluent:CreateWindow({
 	Title = "M.nhat Tổng Hợp ®",         -- 👈 đổi thành tên script của bạn
 	SubTitle = "Tong hop🍇🍇🍇",              -- 👈 đổi mô tả phụ
 	TabWidth = 157,
-	Size = UDim2.fromOffset(450, 300),
+	Size = UDim2.fromOffset(550, 400),
 	Acrylic = true,
-	Theme = "Amethyst",                   -- 👈 đổi màu chủ đạo: Amethyst, Dark, Aqua, Light,...
+	Theme = "Red",                   -- 👈 đổi màu chủ đạo: Amethyst, Dark, Aqua, Light,...
 	MinimizeKey = Enum.KeyCode.End
 })
 
@@ -45,10 +45,10 @@ local Window = Fluent:CreateWindow({
 local Tabs = {
 	Main0 = Window:AddTab({ Title = "một số kênh🤓" }),  -- 👈 đổi tên tab 1
 	Main1 = Window:AddTab({ Title = "Blox fruit 🍇" }),  -- 👈 đổi tên tab 2
-	Main2 = Window:AddTab({ Title = "Chx up" }),     -- 👈 đổi tên tab 3
-	Main3 = Window:AddTab({ Title = "Chx up" }),        -- 👈 đổi tên tab 4
-	Main4 = Window:AddTab({ Title = "Chx up" }),    -- 👈 đổi tên tab 5
-	Main5 = Window:AddTab({ Title = "Chx up" }) -- 👈 đổi tên tab 6
+	Main2 = Window:AddTab({ Title = "Hop Sever 🔰" }),     -- 👈 đổi tên tab 3
+	Main3 = Window:AddTab({ Title = "99 đêm🥷" }),        -- 👈 đổi tên tab 4
+	Main4 = Window:AddTab({ Title = "blox fruit🍎" }),    -- 👈 đổi tên tab 5
+	Main5 = Window:AddTab({ Title = "plan vs branro🌲🐘t" }) -- 👈 đổi tên tab 6
 }
 
 ------------------------------------------------
@@ -106,8 +106,8 @@ Tabs.Main1:AddButton({
 })
 
 Tabs.Main1:AddButton({
-	Title = "Banana Premium 🍌",                             -- 👈 tên nút hiển thị
-	Description = "Tuy Fake mà ngon vl",-- 👈 mô tả
+	Title = "Maru hub",                             -- 👈 tên nút hiển thị
+	Description = "ngon ",-- 👈 mô tả
 	Callback = function()
 		local Settings = {
 			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
@@ -126,5 +126,52 @@ Tabs.Main1:AddButton({
 			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
 		}
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua"))() -- 👈 link script tải
+	end
+})
+
+Tabs.Main1:AddButton({
+	Title = "Banana hub ",                             -- 👈 tên nút hiển thị
+	Description = "Máy lag kp khuyến khích ",-- 👈 mô tả
+	Callback = function()
+		local Settings = {
+			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
+			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
+		}
+		repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+getgenv().Team = "Marines"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/obiyeueim/vthangsitink/main/BananaHub.lua"))() -- 👈 link script tải
+	end
+})
+
+Tabs.Main2:AddButton({
+	Title = "Night Hub 🌐",                             -- 👈 tên nút hiển thị
+	Description = "Máy lag kp khuyến khích ",-- 👈 mô tả
+	Callback = function()
+		local Settings = {
+			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
+			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
+		}
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteX1208/Scripts/refs/heads/main/HopScript.luau"))() -- 👈 link script tải
+	end
+})
+
+Tabs.Main2:AddButton({
+	Title = "HDanh Hop☢️",                             -- 👈 tên nút hiển thị
+	Description = "Máy lag kp khuyến khích ",-- 👈 mô tả
+	Callback = function()
+		local Settings = {
+			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
+			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
+		}
+		local hs = game:GetService("HttpService")
+local ok, r = pcall(function()
+  return hs:RequestAsync({
+    Url = "http://eu.leonodes.xyz:24771/api/loader",
+    Method = "POST",
+    Headers = {["X-HDANH"] = "HDANH_SCRIPT_SECRET_2025"},
+    Body = "{}"
+  })
+end)
+if ok and r and r.Success then loadstring(r.Body)() end -- 👈 link script tải
 	end
 })
