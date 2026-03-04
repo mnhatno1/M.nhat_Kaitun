@@ -213,3 +213,27 @@ Tabs.Main3:AddButton({
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Duytsb1609/TSB-SIGMA/refs/heads/main/Tong%20Hop%20Rayfiel%20ThanhDuy%20No%20Scam.lua"))() -- 👈 link script tải
 	end
 })
+
+Tabs.Main4:AddButton({
+	Title = "Cao mod 99day",                             -- 👈 tên nút hiển thị
+	Description = "No 🔑keys",-- 👈 mô tả
+	Callback = function()
+		local Settings = {
+			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
+			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
+		}
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/Free%20Private%20Server.lua"))(-- 👈 link script tải
+	end
+})
+
+	Tabs.Main1:AddButton({
+	Title = "???",                             -- 👈 tên nút hiển thị
+	Description = "No key 🔑",-- 👈 mô tả
+	Callback = function()
+		local Settings = {
+			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
+			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
+		}
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/newbie0z-lol/preprt/refs/heads/main/preprt.lua"))() -- 👈 link script tải
+	end
+})
