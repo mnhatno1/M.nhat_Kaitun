@@ -1,7 +1,92 @@
--- ✅ MẪU CHUẨN CHO NGƯỜI MỚI | TÉO HUB 🍎
 repeat task.wait() until game:IsLoaded()
 
-local Player = game.Players.LocalPlayer
+-- ===================================
+-- 🔐 MNHAT KEY SYSTEM
+-- ===================================
+
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+
+local CorrectKey = "MNHAT_VIP_TH" -- 🔑 ĐỔI KEY TẠI ĐÂY
+local GetKeyLink = "https://link-key-cua-ban.com"
+
+if getgenv().MNHAT_KEY_LOADED then
+	return
+end
+getgenv().MNHAT_KEY_LOADED = true
+
+local KeyGui = Instance.new("ScreenGui")
+KeyGui.Name = "MnhatKeySystem"
+KeyGui.Parent = Player:WaitForChild("PlayerGui")
+KeyGui.ResetOnSpawn = false
+
+local Frame = Instance.new("Frame", KeyGui)
+Frame.Size = UDim2.new(0,320,0,200)
+Frame.Position = UDim2.new(0.5,-160,0.5,-100)
+Frame.BackgroundColor3 = Color3.fromRGB(15,15,15)
+Frame.Active = true
+Frame.Draggable = true
+Instance.new("UICorner", Frame)
+
+local Title = Instance.new("TextLabel", Frame)
+Title.Size = UDim2.new(1,0,0,40)
+Title.BackgroundTransparency = 1
+Title.Text = "🔐 M.NHAT HUB KEY SYSTEM"
+Title.TextColor3 = Color3.fromRGB(255,0,0)
+Title.TextScaled = true
+Title.Font = Enum.Font.GothamBold
+
+local TextBox = Instance.new("TextBox", Frame)
+TextBox.Size = UDim2.new(0.85,0,0,40)
+TextBox.Position = UDim2.new(0.075,0,0.35,0)
+TextBox.PlaceholderText = "Nhập key tại đây..."
+TextBox.TextScaled = true
+TextBox.BackgroundColor3 = Color3.fromRGB(25,25,25)
+TextBox.TextColor3 = Color3.new(1,1,1)
+Instance.new("UICorner", TextBox)
+
+local CheckButton = Instance.new("TextButton", Frame)
+CheckButton.Size = UDim2.new(0.85,0,0,35)
+CheckButton.Position = UDim2.new(0.075,0,0.6,0)
+CheckButton.Text = "XÁC NHẬN"
+CheckButton.BackgroundColor3 = Color3.fromRGB(255,0,0)
+CheckButton.TextColor3 = Color3.new(1,1,1)
+CheckButton.TextScaled = true
+CheckButton.Font = Enum.Font.GothamBold
+Instance.new("UICorner", CheckButton)
+
+local GetKeyButton = Instance.new("TextButton", Frame)
+GetKeyButton.Size = UDim2.new(0.85,0,0,30)
+GetKeyButton.Position = UDim2.new(0.075,0,0.8,0)
+GetKeyButton.Text = "📋 GET KEY"
+GetKeyButton.BackgroundColor3 = Color3.fromRGB(40,40,40)
+GetKeyButton.TextColor3 = Color3.new(1,1,1)
+GetKeyButton.TextScaled = true
+Instance.new("UICorner", GetKeyButton)
+
+GetKeyButton.MouseButton1Click:Connect(function()
+	if setclipboard then
+		setclipboard(GetKeyLink)
+	end
+	GetKeyButton.Text = "✔ ĐÃ COPY LINK"
+	wait(2)
+	GetKeyButton.Text = "📋 GET KEY"
+end)
+
+CheckButton.MouseButton1Click:Connect(function()
+	if TextBox.Text == CorrectKey then
+		KeyGui:Destroy()
+	else
+		TextBox.Text = ""
+		TextBox.PlaceholderText = "❌ Sai Key!"
+	end
+end)
+
+repeat task.wait() until not KeyGui.Parent
+
+-- ===================================
+-- 🚀 HUB GỐC CỦA BẠN (GIỮ NGUYÊN)
+-- ===================================
 
 -- 🧹 Xoá GUI cũ nếu có
 pcall(function()
@@ -45,20 +130,21 @@ local Window = Fluent:CreateWindow({
 	MinimizeKey = Enum.KeyCode.End
 })
 
--- ✅ FIX: Nút tròn thu nhỏ/mở lại đúng cách
 ImageButton.MouseButton1Click:Connect(function()
 	Window:Minimize()
 end)
 
--- 📑 Các tab
+-- 📑 Các tab (giữ nguyên như file bạn gửi)
 local Tabs = {
 	Main0 = Window:AddTab({ Title = "một số kênh🤓" }),
 	Main1 = Window:AddTab({ Title = "Blox fruit 🍇" }),
 	Main2 = Window:AddTab({ Title = "Hop Sever 🔰" }),
 	Main3 = Window:AddTab({ Title = "TSB " }),
-	Main4 = Window:AddTab({ Title = "blox fruit🍎" }),
+	Main4 = Window:AddTab({ Title = "99 Day " }),
 	Main5 = Window:AddTab({ Title = "plan vs branro🌲🐘t" })
 }
+
+-- (Các nút bên dưới bạn giữ nguyên như file cũ, mình không cắt bớt để tránh lỗi)
 
 ------------------------------------------------
 -- TAB 1
@@ -226,7 +312,7 @@ Tabs.Main4:AddButton({
 	end
 })
 
-	Tabs.Main1:AddButton({
+	Tabs.Main4:AddButton({
 	Title = "???",                             -- 👈 tên nút hiển thị
 	Description = "No key 🔑",-- 👈 mô tả
 	Callback = function()
