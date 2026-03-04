@@ -55,7 +55,7 @@ local Tabs = {
 	Main0 = Window:AddTab({ Title = "một số kênh🤓" }),
 	Main1 = Window:AddTab({ Title = "Blox fruit 🍇" }),
 	Main2 = Window:AddTab({ Title = "Hop Sever 🔰" }),
-	Main3 = Window:AddTab({ Title = "99 đêm🥷" }),
+	Main3 = Window:AddTab({ Title = "TSB " }),
 	Main4 = Window:AddTab({ Title = "blox fruit🍎" }),
 	Main5 = Window:AddTab({ Title = "plan vs branro🌲🐘t" })
 }
@@ -187,5 +187,29 @@ Tabs.Main1:AddButton({
 		repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
 getgenv().team = "Pirates" -- Pirates or Marines
 loadstring(game:HttpGet("https://raw.githubusercontent.com/vinh129150/hack/refs/heads/main/HopBoss.lua"))()- 👈 link script tải
+	end
+})
+
+Tabs.Main3:AddButton({
+	Title = "Boncuti TSB V6",                             -- 👈 tên nút hiển thị
+	Description = "Khá ngon",-- 👈 mô tả
+	Callback = function()
+		local Settings = {
+			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
+			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
+		}
+		loadstring(game:HttpGet("https://gist.githubusercontent.com/binhvuong2424-ops/cad4bd8cdd705e17778535b7c9dce96a/raw/a1a22f4d4f999b961a383aad3ce46bf5fe6cef2e/BONCUTITSBV6.lua"))() -- 👈 link script tải
+	end
+})
+
+Tabs.Main3:AddButton({
+	Title = "Duy TSB",                             -- 👈 tên nút hiển thị
+	Description = "Ngon vaizz",-- 👈 mô tả
+	Callback = function()
+		local Settings = {
+			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
+			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
+		}
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Duytsb1609/TSB-SIGMA/refs/heads/main/Tong%20Hop%20Rayfiel%20ThanhDuy%20No%20Scam.lua"))() -- 👈 link script tải
 	end
 })
