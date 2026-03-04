@@ -23,8 +23,7 @@ UICorner.CornerRadius = UDim.new(1, 10)
 UICorner.Parent = ImageButton
 
 ImageButton.MouseButton1Down:Connect(function()
-	game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.End, false, game)
-end)
+	Window:Minimize()
 
 -- 🟣 Giao diện Fluent
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
