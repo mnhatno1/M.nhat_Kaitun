@@ -175,3 +175,17 @@ Tabs.Main2:AddButton({
 		end
 	end
 })
+
+Tabs.Main1:AddButton({
+	Title = "Bacon hub",                             -- 👈 tên nút hiển thị
+	Description = "Máy lag kp khuyến khích ",-- 👈 mô tả
+	Callback = function()
+		local Settings = {
+			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
+			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
+		}
+		repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+getgenv().team = "Pirates" -- Pirates or Marines
+loadstring(game:HttpGet("https://raw.githubusercontent.com/vinh129150/hack/refs/heads/main/HopBoss.lua"))()- 👈 link script tải
+	end
+})
