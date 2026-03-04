@@ -165,3 +165,38 @@ Tabs.Main4:AddButton({
 		))()
 	end
 })
+
+Tabs.Main3:AddButton({
+	Title = "Boncuti TSB",                             -- 👈 tên nút hiển thị
+	Description = "Máy lag kp khuyến khích ",-- 👈 mô tả
+	Callback = function()
+		local Settings = {
+			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
+			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
+		}
+		loadstring(game:HttpGet("https://gist.githubusercontent.com/binhvuong2424-ops/cad4bd8cdd705e17778535b7c9dce96a/raw/a1a22f4d4f999b961a383aad3ce46bf5fe6cef2e/BONCUTITSBV6.lua"))() -- 👈 link script tải
+	end
+})
+
+Tabs.Main3:AddButton({
+	Title = "Duy Tsb",                             -- 👈 tên nút hiển thị
+	Description = "Máy lag kp khuyến khích ",-- 👈 mô tả
+	Callback = function()
+		local Settings = {
+			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
+			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
+		}
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Duytsb1609/TSB-SIGMA/refs/heads/main/Tong%20Hop%20Rayfiel%20ThanhDuy%20No%20Scam.lua"))()
+	end
+})
+
+Tabs.Main4:AddButton({
+	Title = "CPS hub",                             -- 👈 tên nút hiển thị
+	Description = "Máy lag kp khuyến khích ",-- 👈 mô tả
+	Callback = function()
+		local Settings = {
+			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
+			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Rx1m/CpsHub/refs/heads/main/Hub",true))() -- 👈 link script tải
+	end
+})
