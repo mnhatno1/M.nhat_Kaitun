@@ -1,16 +1,63 @@
 repeat task.wait() until game:IsLoaded()
 
-local player = game.Players.LocalPlayer
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local player = Players.LocalPlayer
 
+------------------------------------------------
+-- LOADER
+------------------------------------------------
+
+local LoaderGui = Instance.new("ScreenGui",player.PlayerGui)
+
+local LoaderFrame = Instance.new("Frame",LoaderGui)
+LoaderFrame.Size = UDim2.new(0,0,0,0)
+LoaderFrame.Position = UDim2.new(0.5,-170,0.5,-100)
+LoaderFrame.BackgroundColor3 = Color3.fromRGB(15,15,15)
+Instance.new("UICorner",LoaderFrame)
+
+TweenService:Create(
+LoaderFrame,
+TweenInfo.new(0.6,Enum.EasingStyle.Back),
+{Size = UDim2.new(0,340,0,200)}
+):Play()
+
+local LoaderText = Instance.new("TextLabel",LoaderFrame)
+LoaderText.Size = UDim2.new(1,0,0,40)
+LoaderText.Position = UDim2.new(0,0,0,30)
+LoaderText.BackgroundTransparency = 1
+LoaderText.Text = "Loading MNhat Hub..."
+LoaderText.TextScaled = true
+LoaderText.Font = Enum.Font.GothamBold
+LoaderText.TextColor3 = Color3.fromRGB(255,0,0)
+
+local Status = Instance.new("TextLabel",LoaderFrame)
+Status.Size = UDim2.new(1,0,0,30)
+Status.Position = UDim2.new(0,0,0,80)
+Status.BackgroundTransparency = 1
+Status.Text = "Starting..."
+Status.TextScaled = true
+Status.TextColor3 = Color3.fromRGB(255,255,255)
+
+task.wait(1)
+Status.Text = "Checking Key System..."
+task.wait(1)
+Status.Text = "Loading Hub UI..."
+task.wait(1)
+
+LoaderGui:Destroy()
+
+------------------------------------------------
 -- KEY SYSTEM
-local Key = "MNHAT_VIP_30DAY"
+------------------------------------------------
+
+local Key = "MNHAT_VIP_TH/30"
 
 local KeyGui = Instance.new("ScreenGui",player.PlayerGui)
-KeyGui.Name = "KeySystem"
 
 local Frame = Instance.new("Frame",KeyGui)
-Frame.Size = UDim2.new(0,300,0,180)
-Frame.Position = UDim2.new(0.5,-150,0.5,-90)
+Frame.Size = UDim2.new(0,320,0,200)
+Frame.Position = UDim2.new(0.5,-160,0.5,-100)
 Frame.BackgroundColor3 = Color3.fromRGB(20,20,20)
 Frame.Active = true
 Frame.Draggable = true
@@ -18,23 +65,26 @@ Instance.new("UICorner",Frame)
 
 local Title = Instance.new("TextLabel",Frame)
 Title.Size = UDim2.new(1,0,0,40)
-Title.Text = "MNhat Hub Key"
-Title.TextColor3 = Color3.fromRGB(255,0,0)
+Title.Text = "MNhat Hub Key System"
 Title.BackgroundTransparency = 1
 Title.TextScaled = true
+Title.TextColor3 = Color3.fromRGB(255,0,0)
 
 local Box = Instance.new("TextBox",Frame)
-Box.Size = UDim2.new(0.8,0,0,35)
-Box.Position = UDim2.new(0.1,0,0.4,0)
-Box.PlaceholderText = "Enter Key"
-Box.BackgroundColor3 = Color3.fromRGB(40,40,40)
+Box.Size = UDim2.new(0.85,0,0,45)
+Box.Position = UDim2.new(0.075,0,0.45,0)
+Box.PlaceholderText = "ENTER KEY..."
+Box.TextScaled = true
+Box.Font = Enum.Font.GothamBold
+Box.BackgroundColor3 = Color3.fromRGB(25,25,25)
 Box.TextColor3 = Color3.new(1,1,1)
 Instance.new("UICorner",Box)
 
 local Button = Instance.new("TextButton",Frame)
-Button.Size = UDim2.new(0.5,0,0,35)
-Button.Position = UDim2.new(0.25,0,0.7,0)
-Button.Text = "Check Key"
+Button.Size = UDim2.new(0.4,0,0,40)
+Button.Position = UDim2.new(0.3,0,0.75,0)
+Button.Text = "CHECK"
+Button.TextScaled = true
 Button.BackgroundColor3 = Color3.fromRGB(255,0,0)
 Button.TextColor3 = Color3.new(1,1,1)
 Instance.new("UICorner",Button)
@@ -45,7 +95,7 @@ if Box.Text == Key then
 KeyGui:Destroy()
 else
 Box.Text = ""
-Box.PlaceholderText = "Wrong Key"
+Box.PlaceholderText = "Wrong Key!"
 end
 
 end)
@@ -67,7 +117,7 @@ local Window = Fluent:CreateWindow({
 Title = "M.Nhat Tổng Hợp",
 SubTitle = "Script Hub",
 Size = UDim2.fromOffset(550,400),
-Theme = "Red"
+Theme = "Dark"
 })
 
 local Tabs = {
