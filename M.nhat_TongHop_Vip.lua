@@ -1,167 +1,112 @@
 repeat task.wait() until game:IsLoaded()
 
--- ===================================
--- 🔐 MNHAT KEY SYSTEM
--- ===================================
+local player = game.Players.LocalPlayer
+local TweenService = game:GetService("TweenService")
 
-local Players = game:GetService("Players")
-local Player = Players.LocalPlayer
+------------------------------------------------
+-- LOADER
+------------------------------------------------
 
-local CorrectKey = "MNHAT_VIP_TH"
-local GetKeyLink = "https://link-key-cua-ban.com"
+local Loader = Instance.new("ScreenGui")
+Loader.Parent = game.CoreGui
 
-if getgenv().MNHAT_KEY_LOADED then
-	return
-end
-getgenv().MNHAT_KEY_LOADED = true
+local Frame = Instance.new("Frame",Loader)
+Frame.Size = UDim2.new(0,300,0,120)
+Frame.Position = UDim2.new(0.5,-150,0.5,-60)
+Frame.BackgroundColor3 = Color3.fromRGB(15,15,15)
+
+Instance.new("UICorner",Frame)
+
+local Text = Instance.new("TextLabel",Frame)
+Text.Size = UDim2.new(1,0,0,40)
+Text.BackgroundTransparency = 1
+Text.Text = "Loading MNHAT HUB..."
+Text.TextScaled = true
+Text.TextColor3 = Color3.fromRGB(255,0,0)
+
+local BarBG = Instance.new("Frame",Frame)
+BarBG.Size = UDim2.new(0.9,0,0,20)
+BarBG.Position = UDim2.new(0.05,0,0.6,0)
+BarBG.BackgroundColor3 = Color3.fromRGB(40,40,40)
+
+local Bar = Instance.new("Frame",BarBG)
+Bar.Size = UDim2.new(0,0,1,0)
+Bar.BackgroundColor3 = Color3.fromRGB(255,0,0)
+
+TweenService:Create(Bar,TweenInfo.new(3),{
+Size = UDim2.new(1,0,1,0)
+}):Play()
+
+task.wait(3)
+Loader:Destroy()
+
+------------------------------------------------
+-- KEY SYSTEM
+------------------------------------------------
+
+local Key = "MNHAT_VIP_TH/30"
 
 local KeyGui = Instance.new("ScreenGui")
-KeyGui.Name = "MnhatKeySystem"
-KeyGui.Parent = Player:WaitForChild("PlayerGui")
-KeyGui.ResetOnSpawn = false
+KeyGui.Parent = game.CoreGui
 
-local Frame = Instance.new("Frame", KeyGui)
-Frame.Size = UDim2.new(0,320,0,200)
-Frame.Position = UDim2.new(0.5,-160,0.5,-100)
-Frame.BackgroundColor3 = Color3.fromRGB(15,15,15)
-Frame.Active = true
-Frame.Draggable = true
-Instance.new("UICorner", Frame)
+local Main = Instance.new("Frame",KeyGui)
+Main.Size = UDim2.new(0,340,0,200)
+Main.Position = UDim2.new(0.5,-170,0.5,-100)
+Main.BackgroundColor3 = Color3.fromRGB(20,20,20)
 
-local Title = Instance.new("TextLabel", Frame)
-Title.Size = UDim2.new(1,0,0,40)
+Instance.new("UICorner",Main)
+
+local Title = Instance.new("TextLabel",Main)
+Title.Size = UDim2.new(1,0,0,50)
 Title.BackgroundTransparency = 1
-Title.Text = "🔐 M.NHAT HUB KEY SYSTEM"
-Title.TextColor3 = Color3.fromRGB(255,0,0)
+Title.Text = "MNHAT KEY SYSTEM"
 Title.TextScaled = true
-Title.Font = Enum.Font.GothamBold
+Title.TextColor3 = Color3.fromRGB(255,0,0)
 
-local TextBox = Instance.new("TextBox", Frame)
-TextBox.Size = UDim2.new(0.85,0,0,40)
-TextBox.Position = UDim2.new(0.075,0,0.35,0)
-TextBox.PlaceholderText = "Nhập key tại đây..."
-TextBox.TextScaled = true
-TextBox.BackgroundColor3 = Color3.fromRGB(25,25,25)
-TextBox.TextColor3 = Color3.new(1,1,1)
-Instance.new("UICorner", TextBox)
+local Box = Instance.new("TextBox",Main)
+Box.Size = UDim2.new(0.8,0,0,40)
+Box.Position = UDim2.new(0.1,0,0.4,0)
+Box.PlaceholderText = "ENTER KEY"
+Box.TextScaled = true
 
-local CheckButton = Instance.new("TextButton", Frame)
-CheckButton.Size = UDim2.new(0.85,0,0,35)
-CheckButton.Position = UDim2.new(0.075,0,0.6,0)
-CheckButton.Text = "XÁC NHẬN"
-CheckButton.BackgroundColor3 = Color3.fromRGB(255,0,0)
-CheckButton.TextColor3 = Color3.new(1,1,1)
-CheckButton.TextScaled = true
-CheckButton.Font = Enum.Font.GothamBold
-Instance.new("UICorner", CheckButton)
+local Button = Instance.new("TextButton",Main)
+Button.Size = UDim2.new(0.5,0,0,35)
+Button.Position = UDim2.new(0.25,0,0.7,0)
+Button.Text = "CHECK KEY"
+Button.TextScaled = true
+Button.BackgroundColor3 = Color3.fromRGB(255,0,0)
 
-local GetKeyButton = Instance.new("TextButton", Frame)
-GetKeyButton.Size = UDim2.new(0.85,0,0,30)
-GetKeyButton.Position = UDim2.new(0.075,0,0.8,0)
-GetKeyButton.Text = "📋 GET KEY"
-GetKeyButton.BackgroundColor3 = Color3.fromRGB(40,40,40)
-GetKeyButton.TextColor3 = Color3.new(1,1,1)
-GetKeyButton.TextScaled = true
-Instance.new("UICorner", GetKeyButton)
+------------------------------------------------
+-- MỞ HUB GỐC
+------------------------------------------------
 
-GetKeyButton.MouseButton1Click:Connect(function()
-	if setclipboard then
-		setclipboard(GetKeyLink)
-	end
-	GetKeyButton.Text = "✔ ĐÃ COPY LINK"
-	task.wait(2)
-	GetKeyButton.Text = "📋 GET KEY"
-end)
+local function OpenHub()
 
-CheckButton.MouseButton1Click:Connect(function()
-	if TextBox.Text == CorrectKey then
-		KeyGui:Destroy()
-	else
-		TextBox.Text = ""
-		TextBox.PlaceholderText = "❌ Sai Key!"
-	end
-end)
+KeyGui:Destroy()
 
-repeat task.wait() until not KeyGui.Parent
+-- HUB GỐC CỦA BẠN
+loadstring(game:HttpGet("https://raw.githubusercontent.com/mnhatno1/M.nhat_Kaitun/main/M.nhat_Tong_Hop.lua"))()
 
--- ===================================
--- 🚀 HUB CHÍNH
--- ===================================
-
--- Xoá GUI cũ an toàn
-local old = Player.PlayerGui:FindFirstChild("TeoHubGui")
-if old then
-	old:Destroy()
 end
 
-local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "TeoHubGui"
-ScreenGui.Parent = Player:WaitForChild("PlayerGui")
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-ScreenGui.ResetOnSpawn = false
+------------------------------------------------
+-- CHECK KEY
+------------------------------------------------
 
-local ImageButton = Instance.new("ImageButton")
-ImageButton.Parent = ScreenGui
-ImageButton.BackgroundColor3 = Color3.fromRGB(0,0,0)
-ImageButton.BorderSizePixel = 0
-ImageButton.Position = UDim2.new(0.1,0,0.16,0)
-ImageButton.Size = UDim2.new(0,40,0,40)
-ImageButton.Image = "http://www.roblox.com/asset/?id=97731875228487"
-ImageButton.Draggable = true
+Button.MouseButton1Click:Connect(function()
 
-local UICorner = Instance.new("UICorner", ImageButton)
-UICorner.CornerRadius = UDim.new(1,10)
+if Box.Text == Key then
 
--- Load Fluent
-local Fluent = loadstring(game:HttpGet(
-	"https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"
-))()
+Box.Text = "KEY CORRECT"
+task.wait(1)
 
-local Window = Fluent:CreateWindow({
-	Title = "M.nhat Tổng Hợp ®",
-	SubTitle = "Tong hop🍇🍇🍇",
-	TabWidth = 157,
-	Size = UDim2.fromOffset(550, 400),
-	Acrylic = true,
-	Theme = "Red",
-	MinimizeKey = Enum.KeyCode.End
-})
+OpenHub()
 
-ImageButton.MouseButton1Click:Connect(function()
-	Window:Minimize()
+else
+
+Box.Text = ""
+Box.PlaceholderText = "WRONG KEY"
+
+end
+
 end)
-
-local Tabs = {
-	Main1 = Window:AddTab({ Title = "Blox fruit 🍇" }),
-	Main2 = Window:AddTab({ Title = "Hop Sever 🔰" }),
-	Main3 = Window:AddTab({ Title = "TSB" }),
-	Main4 = Window:AddTab({ Title = "99 Day" })
-}
-
--- ==============================
--- FIX 1: BACON HUB
--- ==============================
-Tabs.Main1:AddButton({
-	Title = "Bacon hub",
-	Description = "Máy lag kp khuyến khích",
-	Callback = function()
-		repeat task.wait() until game:IsLoaded()
-		getgenv().team = "Pirates"
-		loadstring(game:HttpGet(
-			"https://raw.githubusercontent.com/vinh129150/hack/refs/heads/main/HopBoss.lua"
-		))()
-	end
-})
-
--- ==============================
--- FIX 2: CAO MOD 99DAY
--- ==============================
-Tabs.Main4:AddButton({
-	Title = "Cao mod 99day",
-	Description = "No 🔑keys",
-	Callback = function()
-		loadstring(game:HttpGet(
-			"https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/Free%20Private%20Server.lua"
-		))()
-	end
-})
