@@ -1,88 +1,212 @@
 repeat task.wait() until game:IsLoaded()
 
--- ===================================
--- 🔐 MNHAT KEY SYSTEM
--- ===================================
-
 local Players = game:GetService("Players")
-local Player = Players.LocalPlayer
+local TweenService = game:GetService("TweenService")
 
-local CorrectKey = "MNHAT_VIP_TH"
-local GetKeyLink = "https://link-key-cua-ban.com"
+local player = Players.LocalPlayer
 
-if getgenv().MNHAT_KEY_LOADED then
-	return
+local CorrectKey = "MNHAT_VIP_TH/30"
+local ExpireDays = 30
+local FileName = "MNHAT_KEY"
+
+-- kiểm tra key đã lưu
+local saved
+pcall(function()
+	saved = readfile(FileName..".txt")
+end)
+
+local function Expired(time)
+	return (os.time() - tonumber(time)) > (ExpireDays*24*60*60)
 end
-getgenv().MNHAT_KEY_LOADED = true
 
-local KeyGui = Instance.new("ScreenGui")
-KeyGui.Name = "MnhatKeySystem"
-KeyGui.Parent = Player:WaitForChild("PlayerGui")
-KeyGui.ResetOnSpawn = false
+if saved then
 
-local Frame = Instance.new("Frame", KeyGui)
-Frame.Size = UDim2.new(0,320,0,200)
-Frame.Position = UDim2.new(0.5,-160,0.5,-100)
-Frame.BackgroundColor3 = Color3.fromRGB(15,15,15)
+	local data = string.split(saved,"|")
+	local key = data[1]
+	local time = data[2]
+
+	if key == CorrectKey and not Expired(time) then
+		return
+	end
+
+end
+
+-- GUI
+local Gui = Instance.new("ScreenGui")
+Gui.Parent = player:WaitForChild("PlayerGui")
+Gui.ResetOnSpawn = false
+
+local Frame = Instance.new("Frame",Gui)
+Frame.Size = UDim2.new(0,0,0,0)
+Frame.Position = UDim2.new(0.5,-170,0.5,-110)
+Frame.BackgroundColor3 = Color3.fromRGB(18,18,18)
 Frame.Active = true
 Frame.Draggable = true
-Instance.new("UICorner", Frame)
 
-local Title = Instance.new("TextLabel", Frame)
-Title.Size = UDim2.new(1,0,0,40)
+Instance.new("UICorner",Frame)
+
+TweenService:Create(
+	Frame,
+	TweenInfo.new(0.5,Enum.EasingStyle.Back),
+	{Size = UDim2.new(0,340,0,220)}
+):Play()
+
+-- neon border
+local Stroke = Instance.new("UIStroke",Frame)
+Stroke.Color = Color3.fromRGB(255,0,0)
+Stroke.Thickness = 2
+
+task.spawn(function()
+
+	while true do
+
+		TweenService:Create(
+			Stroke,
+			TweenInfo.new(1.5),
+			{Color = Color3.fromRGB(255,60,60)}
+		):Play()
+
+		task.wait(1.5)
+
+		TweenService:Create(
+			Stroke,
+			TweenInfo.new(1.5),
+			{Color = Color3.fromRGB(255,0,0)}
+		):Play()
+
+		task.wait(1.5)
+
+	end
+
+end)
+
+-- avatar
+local userId = player.UserId
+
+local content = Players:GetUserThumbnailAsync(
+	userId,
+	Enum.ThumbnailType.HeadShot,
+	Enum.ThumbnailSize.Size100x100
+)
+
+local Avatar = Instance.new("ImageLabel",Frame)
+Avatar.Size = UDim2.new(0,60,0,60)
+Avatar.Position = UDim2.new(0.5,-30,0,10)
+Avatar.BackgroundTransparency = 1
+Avatar.Image = content
+
+Instance.new("UICorner",Avatar).CornerRadius = UDim.new(1,0)
+
+-- title
+local Title = Instance.new("TextLabel",Frame)
+Title.Size = UDim2.new(1,0,0,30)
+Title.Position = UDim2.new(0,0,0,70)
 Title.BackgroundTransparency = 1
-Title.Text = "🔐 M.NHAT HUB KEY SYSTEM"
+Title.Text = "🔐 M.NHAT HUB"
 Title.TextColor3 = Color3.fromRGB(255,0,0)
-Title.TextScaled = true
 Title.Font = Enum.Font.GothamBold
+Title.TextScaled = true
 
-local TextBox = Instance.new("TextBox", Frame)
-TextBox.Size = UDim2.new(0.85,0,0,40)
-TextBox.Position = UDim2.new(0.075,0,0.35,0)
-TextBox.PlaceholderText = "Nhập key tại đây..."
-TextBox.TextScaled = true
-TextBox.BackgroundColor3 = Color3.fromRGB(25,25,25)
-TextBox.TextColor3 = Color3.new(1,1,1)
-Instance.new("UICorner", TextBox)
+-- textbox
+local Box = Instance.new("TextBox",Frame)
+Box.Size = UDim2.new(0.8,0,0,35)
+Box.Position = UDim2.new(0.1,0,0.5,0)
+Box.PlaceholderText = "Enter Key..."
+Box.TextScaled = true
+Box.BackgroundColor3 = Color3.fromRGB(30,30,30)
+Box.TextColor3 = Color3.new(1,1,1)
 
-local CheckButton = Instance.new("TextButton", Frame)
-CheckButton.Size = UDim2.new(0.85,0,0,35)
-CheckButton.Position = UDim2.new(0.075,0,0.6,0)
-CheckButton.Text = "XÁC NHẬN"
-CheckButton.BackgroundColor3 = Color3.fromRGB(255,0,0)
-CheckButton.TextColor3 = Color3.new(1,1,1)
-CheckButton.TextScaled = true
-CheckButton.Font = Enum.Font.GothamBold
-Instance.new("UICorner", CheckButton)
+Instance.new("UICorner",Box)
 
-local GetKeyButton = Instance.new("TextButton", Frame)
-GetKeyButton.Size = UDim2.new(0.85,0,0,30)
-GetKeyButton.Position = UDim2.new(0.075,0,0.8,0)
-GetKeyButton.Text = "📋 GET KEY"
-GetKeyButton.BackgroundColor3 = Color3.fromRGB(40,40,40)
-GetKeyButton.TextColor3 = Color3.new(1,1,1)
-GetKeyButton.TextScaled = true
-Instance.new("UICorner", GetKeyButton)
+-- progress bar
+local ProgressBG = Instance.new("Frame",Frame)
+ProgressBG.Size = UDim2.new(0.8,0,0,6)
+ProgressBG.Position = UDim2.new(0.1,0,0.65,0)
+ProgressBG.BackgroundColor3 = Color3.fromRGB(40,40,40)
 
-GetKeyButton.MouseButton1Click:Connect(function()
+Instance.new("UICorner",ProgressBG)
+
+local Progress = Instance.new("Frame",ProgressBG)
+Progress.Size = UDim2.new(0,0,1,0)
+Progress.BackgroundColor3 = Color3.fromRGB(255,0,0)
+
+Instance.new("UICorner",Progress)
+
+local Glow = Instance.new("UIStroke",Progress)
+Glow.Color = Color3.fromRGB(255,0,0)
+
+-- submit
+local Check = Instance.new("TextButton",Frame)
+Check.Size = UDim2.new(0.35,0,0,35)
+Check.Position = UDim2.new(0.1,0,0.75,0)
+Check.Text = "Submit"
+Check.BackgroundColor3 = Color3.fromRGB(255,0,0)
+Check.TextColor3 = Color3.new(1,1,1)
+Check.TextScaled = true
+
+Instance.new("UICorner",Check)
+
+-- get key
+local GetKey = Instance.new("TextButton",Frame)
+GetKey.Size = UDim2.new(0.35,0,0,35)
+GetKey.Position = UDim2.new(0.55,0,0.75,0)
+GetKey.Text = "Get Key"
+GetKey.BackgroundColor3 = Color3.fromRGB(40,40,40)
+GetKey.TextColor3 = Color3.new(1,1,1)
+GetKey.TextScaled = true
+
+Instance.new("UICorner",GetKey)
+
+GetKey.MouseButton1Click:Connect(function()
+
 	if setclipboard then
-		setclipboard(GetKeyLink)
+		setclipboard("https://your-key-link.com")
 	end
-	GetKeyButton.Text = "✔ ĐÃ COPY LINK"
+
+	GetKey.Text="Copied!"
 	task.wait(2)
-	GetKeyButton.Text = "📋 GET KEY"
+	GetKey.Text="Get Key"
+
 end)
 
-CheckButton.MouseButton1Click:Connect(function()
-	if TextBox.Text == CorrectKey then
-		KeyGui:Destroy()
-	else
-		TextBox.Text = ""
-		TextBox.PlaceholderText = "❌ Sai Key!"
+-- kiểm tra key
+Check.MouseButton1Click:Connect(function()
+
+	for i=1,100 do
+
+		Progress.Size = UDim2.new(i/100,0,1,0)
+		task.wait(0.01)
+
 	end
+
+	if Box.Text == CorrectKey then
+
+		pcall(function()
+			writefile(FileName..".txt",CorrectKey.."|"..os.time())
+		end)
+
+		TweenService:Create(
+			Frame,
+			TweenInfo.new(0.4),
+			{Size = UDim2.new(0,0,0,0)}
+		):Play()
+
+		task.wait(0.4)
+
+		Gui:Destroy()
+
+	else
+
+		Progress.Size = UDim2.new(0,0,1,0)
+
+		Box.Text=""
+		Box.PlaceholderText="Wrong Key!"
+
+	end
+
 end)
 
-repeat task.wait() until not KeyGui.Parent
+repeat task.wait() until not Gui.Parent
 
 -- ===================================
 -- 🚀 HUB CHÍNH
