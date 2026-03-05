@@ -1,337 +1,177 @@
+-- ✅ MẪU CHUẨN CHO NGƯỜI MỚI | TÉO HUB 🍎
+-- Giữ nguyên giao diện thật, chỉ thêm hướng dẫn 👈 ngay bên cạnh dòng cần sửa
+
 repeat task.wait() until game:IsLoaded()
 
-local Players = game:GetService("Players")
-local TweenService = game:GetService("TweenService")
-local player = Players.LocalPlayer
+-- 🟢 Nút mở menu chính
+local ScreenGui = Instance.new("ScreenGui")
+local ImageButton = Instance.new("ImageButton")
+local UICorner = Instance.new("UICorner")
 
-------------------------------------------------
--- LOADER
-------------------------------------------------
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-local LoaderGui = Instance.new("ScreenGui",player.PlayerGui)
+ImageButton.Parent = ScreenGui
+ImageButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+ImageButton.BorderSizePixel = 0
+ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
+ImageButton.Size = UDim2.new(0, 40, 0, 40)
+ImageButton.Draggable = true
+ImageButton.Image = "http://www.roblox.com/asset/?id=97731875228487"  -- 👈 đổi ID ảnh nút mở menu tại đây (ảnh roblox)
 
-local Frame = Instance.new("Frame",LoaderGui)
-Frame.Size = UDim2.new(0,320,0,150)
-Frame.Position = UDim2.new(0.5,-160,0.5,-75)
-Frame.BackgroundColor3 = Color3.fromRGB(15,15,15)
+UICorner.CornerRadius = UDim.new(1, 10)
+UICorner.Parent = ImageButton
 
-Instance.new("UICorner",Frame)
-
-local Title = Instance.new("TextLabel",Frame)
-Title.Size = UDim2.new(1,0,0,40)
-Title.BackgroundTransparency = 1
-Title.Text = "Loading MNHAT HUB..."
-Title.TextScaled = true
-Title.TextColor3 = Color3.fromRGB(255,0,0)
-
-local BarBG = Instance.new("Frame",Frame)
-BarBG.Size = UDim2.new(0.9,0,0,20)
-BarBG.Position = UDim2.new(0.05,0,0.65,0)
-BarBG.BackgroundColor3 = Color3.fromRGB(40,40,40)
-
-Instance.new("UICorner",BarBG)
-
-local Bar = Instance.new("Frame",BarBG)
-Bar.Size = UDim2.new(0,0,1,0)
-Bar.BackgroundColor3 = Color3.fromRGB(255,0,0)
-
-Instance.new("UICorner",Bar)
-
-TweenService:Create(Bar,TweenInfo.new(3),{
-Size = UDim2.new(1,0,1,0)
-}):Play()
-
-task.wait(3)
-LoaderGui:Destroy()
-
-------------------------------------------------
--- KEY SYSTEM
-------------------------------------------------
-
-local Key = "MNHAT_VIP_TH/30"
-
-local KeyGui = Instance.new("ScreenGui",player.PlayerGui)
-
-local Main = Instance.new("Frame",KeyGui)
-Main.Size = UDim2.new(0,360,0,240)
-Main.Position = UDim2.new(0.5,-180,0.5,-120)
-Main.BackgroundColor3 = Color3.fromRGB(20,20,20)
-
-Instance.new("UICorner",Main)
-
-local Stroke = Instance.new("UIStroke",Main)
-Stroke.Color = Color3.fromRGB(255,0,0)
-Stroke.Thickness = 2
-
-------------------------------------------------
--- LOGO MNHAT ANIMATION
-------------------------------------------------
-
-local Logo = Instance.new("TextLabel",Main)
-Logo.Size = UDim2.new(0,220,0,50)
-Logo.Position = UDim2.new(0.5,-110,0,10)
-Logo.BackgroundTransparency = 1
-Logo.Text = "MNHAT HUB"
-Logo.TextScaled = true
-Logo.Font = Enum.Font.GothamBlack
-Logo.TextColor3 = Color3.fromRGB(255,0,0)
-
-local Glow = Instance.new("UIStroke",Logo)
-Glow.Color = Color3.fromRGB(255,0,0)
-Glow.Thickness = 3
-
-task.spawn(function()
-while true do
-
-TweenService:Create(Logo,TweenInfo.new(1),{
-Size = UDim2.new(0,240,0,55)
-}):Play()
-
-task.wait(1)
-
-TweenService:Create(Logo,TweenInfo.new(1),{
-Size = UDim2.new(0,220,0,50)
-}):Play()
-
-task.wait(1)
-
-end
+ImageButton.MouseButton1Down:Connect(function()
+	game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.End, false, game)
 end)
 
-------------------------------------------------
--- AVATAR
-------------------------------------------------
-
-local Avatar = Instance.new("ImageLabel",Main)
-Avatar.Size = UDim2.new(0,60,0,60)
-Avatar.Position = UDim2.new(0.5,-30,0,60)
-Avatar.BackgroundTransparency = 1
-Avatar.Image =
-"https://www.roblox.com/headshot-thumbnail/image?userId="..
-player.UserId.."&width=420&height=420&format=png"
-
-------------------------------------------------
--- KEY BOX
-------------------------------------------------
-
-local Box = Instance.new("TextBox",Main)
-Box.Size = UDim2.new(0.8,0,0,40)
-Box.Position = UDim2.new(0.1,0,0.55,0)
-Box.PlaceholderText = "ENTER KEY"
-Box.TextScaled = true
-Box.Text = ""
-Box.BackgroundColor3 = Color3.fromRGB(35,35,35)
-Box.TextColor3 = Color3.fromRGB(255,255,255)
-
-Instance.new("UICorner",Box)
-
-------------------------------------------------
--- PROGRESS BAR
-------------------------------------------------
-
-local ProgressBG = Instance.new("Frame",Main)
-ProgressBG.Size = UDim2.new(0.8,0,0,8)
-ProgressBG.Position = UDim2.new(0.1,0,0.72,0)
-ProgressBG.BackgroundColor3 = Color3.fromRGB(40,40,40)
-
-Instance.new("UICorner",ProgressBG)
-
-local Progress = Instance.new("Frame",ProgressBG)
-Progress.Size = UDim2.new(0,0,1,0)
-Progress.BackgroundColor3 = Color3.fromRGB(255,0,0)
-
-Instance.new("UICorner",Progress)
-
-------------------------------------------------
--- BUTTON
-------------------------------------------------
-
-local Button = Instance.new("TextButton",Main)
-Button.Size = UDim2.new(0.5,0,0,35)
-Button.Position = UDim2.new(0.25,0,0.82,0)
-Button.Text = "CHECK KEY"
-Button.TextScaled = true
-Button.BackgroundColor3 = Color3.fromRGB(255,0,0)
-Button.TextColor3 = Color3.fromRGB(255,255,255)
-
-Instance.new("UICorner",Button)
-
-------------------------------------------------
--- HUB FUNCTION
-------------------------------------------------
-
-function LoadHub()
-
-local Fluent = loadstring(game:HttpGet(
-"https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"
-))()
-
-local Window = Fluent:CreateWindow({
-Title = "MNhat Hub",
-SubTitle = "Script Tổng Hợp",
-Size = UDim2.fromOffset(560,420),
-Theme = "Dark"
-})
-
-local MainTab = Window:AddTab({Title="Main"})
-local Main2Tab = Window:AddTab({Title="Main2"})
-
-MainTab:AddButton({
-Title="Test Hub",
-Callback=function()
-print("MNhat Hub Working")
-end
-})
-
-Main2Tab:AddButton({
-Title="Load hDanh Script",
-Callback=function()
-
-local hs = game:GetService("HttpService")
-
-local ok, r = pcall(function()
-return hs:RequestAsync({
-Url = "http://eu.leonodes.xyz:24771/api/loader",
-Method = "POST",
-Headers = {["X-HDANH"] = "HDANH_SCRIPT_SECRET_2025"},
-Body = "{}"
-})
-end)
-
-if ok and r and r.Success then
-loadstring(r.Body)()
-end
-
-end
-})
-
-end
-
-------------------------------------------------
--- CHECK KEY
-------------------------------------------------
-
-Button.MouseButton1Click:Connect(function()
-
-TweenService:Create(Progress,TweenInfo.new(1),{
-Size = UDim2.new(1,0,1,0)
-}):Play()
-
-task.wait(1)
-
-if Box.Text == Key then
-
-KeyGui:Destroy()
-LoadHub()
-
-else
-
-Box.Text = ""
-Box.PlaceholderText = "WRONG KEY"
-Progress.Size = UDim2.new(0,0,1,0)
-
-end
-
-end)
-
-------------------------------------------------
--- HUB
-------------------------------------------------
-
-local old = player.PlayerGui:FindFirstChild("TeoHubGui")
-if old then
-old:Destroy()
-end
-
+-- 🟣 Giao diện Fluent
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+repeat wait() until game:IsLoaded()
 
+-- 🪟 Cửa sổ chính
 local Window = Fluent:CreateWindow({
-Title = "M.Nhat Tổng Hợp",
-SubTitle = "Script Hub",
-Size = UDim2.fromOffset(550,400),
-Theme = "Dark"
+	Title = "M.nhat Tổng Hợp ®",         -- 👈 đổi thành tên script của bạn
+	SubTitle = "Tong hop🍇🍇🍇",              -- 👈 đổi mô tả phụ
+	TabWidth = 157,
+	Size = UDim2.fromOffset(550, 400),
+	Acrylic = true,
+	Theme = "Red",                   -- 👈 đổi màu chủ đạo: Amethyst, Dark, Aqua, Light,...
+	MinimizeKey = Enum.KeyCode.End
 })
 
+-- 📑 Các tab (mục chính)
 local Tabs = {
-Main1 = Window:AddTab({Title="Blox Fruit"}),
-Main2 = Window:AddTab({Title="Hop Server"}),
-Main3 = Window:AddTab({Title="TSB"}),
-Main4 = Window:AddTab({Title="99Day"})
+	Main0 = Window:AddTab({ Title = "một số kênh🤓" }),  -- 👈 đổi tên tab 1
+	Main1 = Window:AddTab({ Title = "Blox fruit 🍇" }),  -- 👈 đổi tên tab 2
+	Main2 = Window:AddTab({ Title = "Hop Sever 🔰" }),     -- 👈 đổi tên tab 3
+	Main3 = Window:AddTab({ Title = "99 đêm🥷" }),        -- 👈 đổi tên tab 4
+	Main4 = Window:AddTab({ Title = "blox fruit🍎" }),    -- 👈 đổi tên tab 5
+	Main5 = Window:AddTab({ Title = "plan vs branro🌲🐘t" }) -- 👈 đổi tên tab 6
 }
 
 ------------------------------------------------
--- BLOX FRUIT
+-- TAB 1: Các kênh tiktok
 ------------------------------------------------
+Tabs.Main0:AddButton({
+	Title = "caythue_24h",              -- 👈 tên nút
+	Description = "oách xà lách vô cùng",-- 👈 mô tả nút
+	Callback = function()
+		setclipboard("https://www.tiktok.com/@jannie3342?_t=ZS-90QsJQ5j0NO&_r=1")  -- 👈 link sao chép
+	end
+})
+
+Tabs.Main0:AddButton({
+	Title = "Tik Tok",
+	Description = "Làm cho có",
+	Callback = function()
+		setclipboard("https://www.tiktok.com/@caythue_24h?_r=1&_t=ZS-94NVHNVEL1Y")     -- 👈 link khác
+	end
+})
+
+Tabs.Main0:AddButton({
+	Title = "tiktok",
+	Description = "fl tiktok để biết thêm nhiều script",
+	Callback = function()
+		setclipboard("https://www.tiktok.com/@caythue_24h?_r=1&_t=ZS-94NVHNVEL1Y")
+	end
+})
+
+------------------------------------------------
+-- TAB 2: Ví dụ thêm script
+------------------------------------------------
+Tabs.Main1:AddButton({
+	Title = "Quan Tum Onyx",                             -- 👈 tên nút hiển thị
+	Description = "Farm ổn định (ngon) ",-- 👈 mô tả
+	Callback = function()
+		local Settings = {
+			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
+			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
+		}
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua"))() -- 👈 link script tải
+	end
+})
 
 Tabs.Main1:AddButton({
-Title="Bacon Hub",
-Callback=function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/vinh129150/hack/refs/heads/main/HopBoss.lua"))()
-end
+	Title = "Omg Hub ",                             -- 👈 tên nút hiển thị
+	Description = "Script Farm cần key ",-- 👈 mô tả
+	Callback = function()
+		local Settings = {
+			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
+			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
+		}
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Omgshit/Scripts/main/MainLoader.lua"))() -- 👈 link script tải
+	end
 })
 
-------------------------------------------------
--- HDANH SCRIPT
-------------------------------------------------
+Tabs.Main1:AddButton({
+	Title = "Maru hub",                             -- 👈 tên nút hiển thị
+	Description = "ngon ",-- 👈 mô tả
+	Callback = function()
+		local Settings = {
+			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
+			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
+		}
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/aloaloalo322/sssdas/refs/heads/main/cc"))() -- 👈 link script tải
+	end
+})
+
+Tabs.Main1:AddButton({
+	Title = "Gravity hub",                             -- 👈 tên nút hiển thị
+	Description = "Máy lag kp khuyến khích ",-- 👈 mô tả
+	Callback = function()
+		local Settings = {
+			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
+			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
+		}
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua"))() -- 👈 link script tải
+	end
+})
+
+Tabs.Main1:AddButton({
+	Title = "Banana hub ",                             -- 👈 tên nút hiển thị
+	Description = "Máy lag kp khuyến khích ",-- 👈 mô tả
+	Callback = function()
+		local Settings = {
+			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
+			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
+		}
+		repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+getgenv().Team = "Marines"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/obiyeueim/vthangsitink/main/BananaHub.lua"))() -- 👈 link script tải
+	end
+})
 
 Tabs.Main2:AddButton({
-Title="HDanh Hop",
-Callback=function()
-
-local hs = game:GetService("HttpService")
-
-local ok,res = pcall(function()
-return hs:RequestAsync({
-Url="http://eu.leonodes.xyz:24771/api/loader",
-Method="POST",
-Headers={
-["X-HDANH"]="HDANH_SCRIPT_SECRET_2025"
-},
-Body="{}"
+	Title = "Night Hub 🌐",                             -- 👈 tên nút hiển thị
+	Description = "Máy lag kp khuyến khích ",-- 👈 mô tả
+	Callback = function()
+		local Settings = {
+			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
+			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
+		}
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteX1208/Scripts/refs/heads/main/HopScript.luau"))() -- 👈 link script tải
+	end
 })
+
+Tabs.Main2:AddButton({
+	Title = "HDanh Hop☢️",                             -- 👈 tên nút hiển thị
+	Description = "Máy lag kp khuyến khích ",-- 👈 mô tả
+	Callback = function()
+		local Settings = {
+			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
+			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
+		}
+		local hs = game:GetService("HttpService")
+local ok, r = pcall(function()
+  return hs:RequestAsync({
+    Url = "http://eu.leonodes.xyz:24771/api/loader",
+    Method = "POST",
+    Headers = {["X-HDANH"] = "HDANH_SCRIPT_SECRET_2025"},
+    Body = "{}"
+  })
 end)
-
-if ok and res and res.Success then
-loadstring(res.Body)()
-else
-warn("Không load được HDanh Script")
-end
-
-end
-})
-
-------------------------------------------------
--- TSB
-------------------------------------------------
-
-Tabs.Main3:AddButton({
-Title="Boncuti TSB",
-Callback=function()
-loadstring(game:HttpGet("https://gist.githubusercontent.com/binhvuong2424-ops/cad4bd8cdd705e17778535b7c9dce96a/raw/BONCUTITSBV6.lua"))()
-end
-})
-
-Tabs.Main3:AddButton({
-Title="Duy TSB",
-Callback=function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Duytsb1609/TSB-SIGMA/refs/heads/main/Tong%20Hop%20Rayfiel%20ThanhDuy%20No%20Scam.lua"))()
-end
-})
-
-------------------------------------------------
--- 99DAY
-------------------------------------------------
-
-Tabs.Main4:AddButton({
-Title="CaoMod 99Day",
-Callback=function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/Free%20Private%20Server.lua"))()
-end
-})
-
-Tabs.Main4:AddButton({
-Title="CPS Hub",
-Callback=function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Rx1m/CpsHub/refs/heads/main/Hub"))()
-end
+if ok and r and r.Success then loadstring(r.Body)() end -- 👈 link script tải
+	end
 })
