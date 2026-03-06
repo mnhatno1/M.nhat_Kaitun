@@ -6,11 +6,13 @@ repeat task.wait() until game:IsLoaded()
 -- NÚT ICON MỞ / ẨN UI
 ------------------------------------------------
 
+local player = game.Players.LocalPlayer
+
 local ScreenGui = Instance.new("ScreenGui")
 local ImageButton = Instance.new("ImageButton")
 local UICorner = Instance.new("UICorner")
 
-ScreenGui.Parent = game.CoreGui
+ScreenGui.Parent = player:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 ImageButton.Parent = ScreenGui
@@ -85,15 +87,14 @@ Tabs.Main0:AddButton({
 })
 
 ------------------------------------------------
--- TAB 2
+-- TAB BLOX FRUIT
 ------------------------------------------------
 
 Tabs.Main1:AddButton({
 	Title = "Quantum Onyx",
 	Description = "Farm ổn định",
 	Callback = function()
-		loadstring(game:HttpGet(
-		"https://raw.githubusercontent.com/flazhy/QuantumOnyx/main/QuantumOnyx.lua"))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/main/QuantumOnyx.lua"))()
 	end
 })
 
@@ -101,8 +102,7 @@ Tabs.Main1:AddButton({
 	Title = "Omg Hub",
 	Description = "Script cần key",
 	Callback = function()
-		loadstring(game:HttpGet(
-		"https://raw.githubusercontent.com/Omgshit/Scripts/main/MainLoader.lua"))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Omgshit/Scripts/main/MainLoader.lua"))()
 	end
 })
 
@@ -110,8 +110,7 @@ Tabs.Main1:AddButton({
 	Title = "Maru Hub",
 	Description = "Farm ngon",
 	Callback = function()
-		loadstring(game:HttpGet(
-		"https://raw.githubusercontent.com/aloaloalo322/sssdas/main/cc"))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/aloaloalo322/sssdas/main/cc"))()
 	end
 })
 
@@ -119,8 +118,7 @@ Tabs.Main1:AddButton({
 	Title = "Gravity Hub",
 	Description = "Máy yếu dễ lag",
 	Callback = function()
-		loadstring(game:HttpGet(
-		"https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/main/Main.lua"))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/main/Main.lua"))()
 	end
 })
 
@@ -130,67 +128,40 @@ Tabs.Main1:AddButton({
 	Callback = function()
 		repeat wait() until game:IsLoaded()
 		getgenv().Team = "Marines"
-		loadstring(game:HttpGet(
-		"https://raw.githubusercontent.com/obiyeueim/vthangsitink/main/BananaHub.lua"))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/obiyeueim/vthangsitink/main/BananaHub.lua"))()
 	end
 })
 
 ------------------------------------------------
--- TAB HOP SERVER
+-- HOP SERVER
 ------------------------------------------------
 
 Tabs.Main2:AddButton({
 	Title = "Night Hub Hop",
 	Description = "Hop server tự động",
 	Callback = function()
-		loadstring(game:HttpGet(
-		"https://raw.githubusercontent.com/WhiteX1208/Scripts/main/HopScript.luau"))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteX1208/Scripts/main/HopScript.luau"))()
 	end
 })
 
 Tabs.Main2:AddButton({
-	Title = "Bacon hub",                             -- 👈 tên nút hiển thị
-	Description = "Máy lag kp khuyến khích ",-- 👈 mô tả
+	Title = "Bacon Hub",
+	Description = "Máy lag kp khuyến khích",
 	Callback = function()
-		local Settings = {
-			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
-			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
-		}
-		repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
-getgenv().team = "Pirates" -- Pirates or Marines
-loadstring(game:HttpGet("https://raw.githubusercontent.com/vinh129150/hack/refs/heads/main/HopBoss.lua"))() -- 👈 link script tải
+		repeat wait() until game:IsLoaded()
+		getgenv().team = "Pirates"
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/vinh129150/hack/refs/heads/main/HopBoss.lua"))()
 	end
 })
 
-Tabs.Main2:AddButton({
-	Title = "HDanh hub",                             -- 👈 tên nút hiển thị
-	Description = "Máy lag kp khuyến khích ",-- 👈 mô tả
-	Callback = function()
-		local Settings = {
-			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
-			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
-		}
-local hs = game:GetService("HttpService")
-local ok, r = pcall(function()
-  return hs:RequestAsync({
-    Url = "http://eu.leonodes.xyz:24771/api/loader",
-    Method = "POST",
-    Headers = {["X-HDANH"] = "HDANH_SCRIPT_SECRET_2025"},
-    Body = "{}"
-  })
-end)
-if ok and r and r.Success then loadstring(r.Body)() end -- 👈 link script tải
-	end
-})
+------------------------------------------------
+-- M.NHAT HUB
+------------------------------------------------
 
 Tabs.Main1:AddButton({
-	Title = "M.nhat hub",                             -- 👈 tên nút hiển thị
-	Description = "Máy lag kp khuyến khích ",-- 👈 mô tả
+	Title = "M.nhat hub",
+	Description = "Máy lag kp khuyến khích",
 	Callback = function()
-		local Settings = {
-			JoinTeam = "Pirates";   -- 👈 team mặc định: Pirates hoặc Marines
-			Translator = true;      -- 👈 bật dịch sang tiếng Việt nếu có
-		}
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua"))() -- 👈 link script tải
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua"))()
 	end
-	}
+})
